@@ -1,6 +1,8 @@
 package com.sejong.health.db.member;
 
 import com.sejong.health.db.member.enums.MemberStatus;
+import com.sejong.health.db.ranking.RankingEntity;
+import com.sejong.health.db.ranking.enums.RankingStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,13 @@ class MemberEntityTest {
         memberEntity.setPassword("1234");
         memberEntity.setEmail("kkd06155@naver.com");
         memberEntity.setStatus(MemberStatus.REGISTERED);
+
+        RankingEntity rankingEntity = new RankingEntity();
+        rankingEntity.setRankingStatus(RankingStatus.GOLD);
+        rankingEntity.setRankingValue(2000);
+
+        memberEntity.makeRanking(rankingEntity);
+
         // 엔티티 저장
         memberRepository.save(memberEntity);
 
@@ -38,5 +47,10 @@ class MemberEntityTest {
         // 검증
         Assertions.assertThat(all.size()).isEqualTo(1);
         Assertions.assertThat(all.get(0).getNickName()).isEqualTo("dongho");
+        Assertions.assertThat(all.get(0).getRanking().getRankingValue()).isEqualTo(2000);
+        Assertions.assertThat(all.get(0).getRanking().getRankingStatus()).isEqualTo(RankingStatus.GOLD);
+
     }
+
+
 }

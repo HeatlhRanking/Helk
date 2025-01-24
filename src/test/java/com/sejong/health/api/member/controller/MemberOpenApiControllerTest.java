@@ -32,7 +32,7 @@ class MemberOpenApiControllerTest {
     @Autowired
     private MemberRepository memberRepository;
 
-    //@BeforeEach
+    @BeforeEach
     void Init(){
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setNickName("dongho");
