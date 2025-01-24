@@ -1,10 +1,12 @@
 package com.sejong.health.db.member;
 
+import com.sejong.health.db.member.enums.MemberStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -25,8 +27,8 @@ class MemberEntityTest {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setNickName("dongho");
         memberEntity.setPassword("1234");
-        memberEntity.setEmail("kkd064@naver.com");
-
+        memberEntity.setEmail("kkd06155@naver.com");
+        memberEntity.setStatus(MemberStatus.REGISTERED);
         // 엔티티 저장
         memberRepository.save(memberEntity);
 

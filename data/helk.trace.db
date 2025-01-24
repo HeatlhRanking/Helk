@@ -1,0 +1,6 @@
+2025-01-24 14:44:05.935386+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBER" not found (this database is empty); SQL statement:
+INSERT INTO member (email, password, nick_name, created_date_time, modified_date_time, status) VALUES ('kkd06144@baver.com', '1234', 'dongho', '2025-01-24 10:00:00', '2025-01-24 10:00:00', 'REGISTERED') [42104-232]
+2025-01-24 14:44:23.439450+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBER" not found (this database is empty); SQL statement:
+INSERT INTO member (email, password, nick_name, created_date_time, modified_date_time, status) VALUES ('kkd06144@baver.com', '1234', 'dongho', '2025-01-24 10:00:00', '2025-01-24 10:00:00', 'REGISTERED') [42104-232]

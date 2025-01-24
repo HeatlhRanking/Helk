@@ -1,5 +1,6 @@
 package com.sejong.health.db.base;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -20,9 +21,11 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @CreatedDate
+    @Column(nullable = false)
     public LocalDateTime createdDateTime;
 
     @LastModifiedDate
+    @Column(nullable = false)
     public LocalDateTime modifiedDateTime;
 
 }

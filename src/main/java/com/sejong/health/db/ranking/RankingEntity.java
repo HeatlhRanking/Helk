@@ -1,4 +1,4 @@
-package com.sejong.health.db.rank;
+package com.sejong.health.db.ranking;
 
 import com.sejong.health.db.base.BaseEntity;
 import jakarta.persistence.*;
