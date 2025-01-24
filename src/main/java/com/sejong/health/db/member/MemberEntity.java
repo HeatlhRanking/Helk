@@ -2,6 +2,7 @@ package com.sejong.health.db.member;
 
 import com.sejong.health.db.base.BaseEntity;
 import com.sejong.health.db.member.enums.MemberStatus;
+import com.sejong.health.db.ranking.RankingEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -33,5 +34,16 @@ public class MemberEntity extends BaseEntity {
     @Column(columnDefinition = "varchar(50)", nullable = false)
     @Enumerated(EnumType.STRING)
     private MemberStatus status;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ranking_id")
+    private RankingEntity ranking;
+
+    public void makeRanking(RankingEntity ranking) {
+        this.ranking = ranking;
+        if (ranking != null && ranking.getMember() != this) {
+            ranking.makeMember(this);
+        }
+    }
 
 }
