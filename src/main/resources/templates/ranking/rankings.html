@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Rankings</title>
+</head>
+<body>
+<h1>Rankings</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>nickname</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ranking : ${rankings}">
+        <td th:text="${ranking.rankingValue}"></td>
+        <td th:text="${ranking.rankingStatus}"></td>
+        <td th:text="${ranking.member != null && ranking.member.nickName != null ? ranking.member.nickName : 'N/A'}"></td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

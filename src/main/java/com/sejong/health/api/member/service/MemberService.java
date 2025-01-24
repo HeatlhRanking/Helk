@@ -5,6 +5,7 @@ import com.sejong.health.db.member.MemberRepository;
 import com.sejong.health.db.member.enums.MemberStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
 
     public MemberEntity signup(MemberEntity memberEntity) {
         return Optional.ofNullable(memberEntity)

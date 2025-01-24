@@ -7,11 +7,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@SuperBuilder
 @Table(name="ranking")
 public class RankingEntity extends BaseEntity {
 
@@ -19,6 +21,8 @@ public class RankingEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(columnDefinition = "int default 0")
     private Integer rankingValue;
 
     @Column(columnDefinition = "varchar(50)",nullable = false)
