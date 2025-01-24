@@ -2,6 +2,7 @@ package com.sejong.health.api.member.controller;
 
 import com.sejong.health.api.member.business.MemberBusiness;
 import com.sejong.health.api.member.dto.request.MemberLoginRequest;
+import com.sejong.health.api.member.dto.request.MemberSignUpRequest;
 import com.sejong.health.db.member.MemberEntity;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -20,7 +21,7 @@ public class MemberOpenApiController {
 
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "member/login";
     }
 
@@ -33,8 +34,8 @@ public class MemberOpenApiController {
 
     ) {
 
-        if(bindingResult.hasErrors()){
-            model.addAttribute("errorMessage","Invalid input. Please check your email and password.");
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errorMessage", "Invalid input. Please check your email and password.");
             return "member/login";
         }
 
@@ -47,6 +48,36 @@ public class MemberOpenApiController {
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Invalid email or password. Please try again.");
             return "member/login"; // 실패 시 다시 로그인 페이지
+        }
+    }
+
+    @GetMapping("/signup")
+    public String register() {
+
+        return "member/signup";
+    }
+
+    @PostMapping("/signup")
+    public String register(
+            @Valid @ModelAttribute MemberSignUpRequest memberSignUpRequest,
+            BindingResult bindingResult,
+            Model model
+    ) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("errorMessage","Invalid Input");
+            System.out.println("fuck1");
+            return "member/signup";
+        }
+
+        try{
+            System.out.println("fuck2");
+            memberBusiness.signup(memberSignUpRequest);
+
+            return "redirect:/open-api/login";
+        }catch(Exception e){
+            System.out.println("fuck3");
+            model.addAttribute("errorMessage", "Invalid email or password. Please try again.");
+            return "member/signup"; // 실패 시 다시 로그인 페이지
         }
     }
 

@@ -1,4 +1,4 @@
-package com.sejong.health.api.common;
+package com.sejong.health.common.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Service
-public @interface Business {
+public @interface Converter {
     @AliasFor(annotation = Service.class)
     String value() default "";
+
 }

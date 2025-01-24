@@ -14,7 +14,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public MemberEntity update(MemberEntity memberEntity) {
+    public MemberEntity signup(MemberEntity memberEntity) {
         return Optional.ofNullable(memberEntity)
                 .map(it->{
                     it.setStatus(MemberStatus.REGISTERED);
@@ -25,6 +25,7 @@ public class MemberService {
     public MemberEntity login(String email, String password){
         return getMember(email, password);
     }
+
 
     private MemberEntity getMember(String email, String password) {
 

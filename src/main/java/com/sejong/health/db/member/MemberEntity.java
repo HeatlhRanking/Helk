@@ -4,14 +4,15 @@ import com.sejong.health.db.base.BaseEntity;
 import com.sejong.health.db.member.enums.MemberStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 @Table(name= "member")
 public class MemberEntity extends BaseEntity {
 
