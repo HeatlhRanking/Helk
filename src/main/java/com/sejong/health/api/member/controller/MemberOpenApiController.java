@@ -3,6 +3,7 @@ package com.sejong.health.api.member.controller;
 import com.sejong.health.api.member.business.MemberBusiness;
 import com.sejong.health.api.member.dto.request.MemberLoginRequest;
 import com.sejong.health.api.member.dto.request.MemberSignUpRequest;
+import com.sejong.health.common.Member;
 import com.sejong.health.db.member.MemberEntity;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -40,8 +41,8 @@ public class MemberOpenApiController {
         }
 
         try {
-            MemberEntity member = memberBusiness.login(request);
-            session.setAttribute("sessionId", member); // 세션에 사용자 정보 저장
+            Member member = memberBusiness.login(request);
+            session.setAttribute("sessionId", member.getId()); // 세션에 사용자 정보 저장
             model.addAttribute("successMessage", "Login successful!");
 
             return "redirect:/index"; // 성공 시 대시보드로 리다이렉트

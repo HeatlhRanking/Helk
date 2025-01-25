@@ -1,5 +1,6 @@
 package com.sejong.health.api.member.business;
 
+import com.sejong.health.common.Member;
 import com.sejong.health.common.annotation.Business;
 import com.sejong.health.api.member.converter.MemberConverter;
 import com.sejong.health.api.member.dto.request.MemberLoginRequest;
@@ -19,9 +20,13 @@ public class MemberBusiness {
     private final MemberService memberService;
     private final MemberConverter memberConverter;
 
-    public MemberEntity login(MemberLoginRequest request) {
 
-        return memberService.login(request.getEmail(), request.getPassword());
+
+    public Member login(MemberLoginRequest request) {
+
+        MemberEntity memberEntity = memberService.login(request.getEmail(), request.getPassword());
+        return memberConverter.toMember(memberEntity);
+
     }
 
     public void signup(MemberSignUpRequest request) {

@@ -1,6 +1,7 @@
 package com.sejong.health.api.member.converter;
 
 
+import com.sejong.health.common.Member;
 import com.sejong.health.common.annotation.Converter;
 import com.sejong.health.api.member.dto.request.MemberSignUpRequest;
 import com.sejong.health.db.member.MemberEntity;
@@ -21,5 +22,18 @@ public class MemberConverter {
                                 .build();
                     })
                     .orElseThrow(()-> new RuntimeException("toMemberEntity"));
+    }
+
+    public Member toMember(MemberEntity memberEntity){
+        return Optional.ofNullable(memberEntity)
+                .map(it->{
+                    return Member.builder()
+                            .id(memberEntity.getId())
+                            .nickName(memberEntity.getNickName())
+                            .email(memberEntity.getEmail())
+                            .status(memberEntity.getStatus())
+                            .build();
+                })
+                .orElseThrow(()-> new RuntimeException("toMember"));
     }
 }
