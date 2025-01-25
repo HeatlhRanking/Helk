@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question List</title>
+    <style>
+        /* 간단한 스타일 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        nav.pagination {
+            margin-top: 20px;
+        }
+
+        nav.pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: blue;
+        }
+
+        nav.pagination span.current {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Question Board</h1>
+    <!-- Write button -->
+    <button onclick="location.href='/write'">Write</button>
+</header>
+
+<main>
+    <!-- Question list -->
+    <ul>
+        <!-- Loop through the questions and display them -->
+        <li th:each="question : ${questionsPage.content}">
+            <a th:href="@{'/api/question/showOne/' + ${question.id}}" th:text="${question.context}"></a>
+            <p>Likes: <span th:text="${question.likes}"></span></p>
+        </li>
+    </ul>
+
+    <!-- Pagination -->
+    <nav class="pagination">
+        <!-- Previous button -->
+        <a th:if="${questionsPage.currentPage > 0}"
+           th:href="@{/api/question/all(page=${questionsPage.currentPage - 1}, size=${questionsPage.size})}">Previous</a>
+
+        <!-- Page numbers -->
+        <span th:each="pageNum : ${#numbers.sequence(0, questionsPage.totalPages - 1)}"
+              th:classappend="${pageNum == questionsPage.currentPage} ? 'current'">
+            <a th:href="@{/api/question/all(page=${pageNum}, size=${questionsPage.size})}"
+               th:text="${pageNum + 1}">1</a>
+        </span>
+
+        <!-- Next button -->
+        <a th:if="${questionsPage.currentPage < questionsPage.totalPages - 1}"
+           th:href="@{/api/question/all(page=${questionsPage.currentPage + 1}, size=${questionsPage.size})}">Next</a>
+    </nav>
+</main>
+</body>
+</html>

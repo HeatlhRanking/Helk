@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Details</title>
+</head>
+<body>
+<header>
+    <p>Question Page Number:  <span th:text="${question.id}"></span></p>
+</header>
+
+<main>
+    <section>
+        <p><strong>작성자:</strong> <span th:text="${question.madePerson}">Author Name</span></p>
+        <p><strong>좋아요 수:</strong> <span th:text="${question.likes}">0</span></p>
+        <p><strong>내용:</strong></p>
+        <p th:text="${question.context}">Question Content</p>
+    </section>
+</main>
+
+<footer>
+    <a href="/api/question/all">Back to List</a>
+</footer>
+</body>
+</html>
