@@ -78,7 +78,8 @@ public class SqlConstructor {
         for (int i = 1; i <= count; i++) {
             QuestionEntity question = QuestionEntity.builder()
                     .likes(i * 10)
-                    .context("this is question" + i)
+                    .context("I am a king! I am a king! I am a king! I am a king! I am a king!")
+                    .title("this is question" + i)
                     .build();
 
             question.makeMember(members.get(i-1));
@@ -88,7 +89,8 @@ public class SqlConstructor {
         for (int i = 1; i <= count; i++) {
             QuestionEntity question = QuestionEntity.builder()
                     .likes(i * 10)
-                    .context("this is not question" + i)
+                    .context("I am a king! I am a king! I am a king! I am a king! I am a king!")
+                    .title("this is not question" + i)
                     .build();
 
             question.makeMember(members.get(i-1));

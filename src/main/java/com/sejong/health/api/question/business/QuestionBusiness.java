@@ -2,6 +2,7 @@ package com.sejong.health.api.question.business;
 
 import com.sejong.health.api.question.converter.QuestionConverter;
 import com.sejong.health.api.question.dto.request.PageParamRequest;
+import com.sejong.health.api.question.dto.request.QuestionFormRequest;
 import com.sejong.health.api.question.dto.response.PageParamResponse;
 import com.sejong.health.api.question.dto.response.QuestionResponse;
 import com.sejong.health.api.question.service.QuestionService;
@@ -26,5 +27,11 @@ public class QuestionBusiness {
 
         QuestionEntity questionEntity = questionService.findById(questionId);
         return questionConverter.toQuestionResponse(questionEntity);
+    }
+
+    public Long makeQuestion(Long memberId, QuestionFormRequest request){
+        QuestionEntity questionEntity = questionConverter.toQuestionEntity(request);
+        return questionService.update(memberId,questionEntity);
+
     }
 }

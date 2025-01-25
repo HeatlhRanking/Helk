@@ -28,6 +28,9 @@ public class QuestionEntity {
     private Long id;
 
     @Column(length = 50, nullable = false)
+    private String title;
+
+    @Column(length = 200, nullable = false)
     private String context;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

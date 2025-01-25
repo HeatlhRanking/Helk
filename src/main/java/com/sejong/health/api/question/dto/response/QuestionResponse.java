@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class QuestionResponse {
 
     private Long id;
+    private String title;
     private String context;
     private Integer likes;
     private String madePerson;

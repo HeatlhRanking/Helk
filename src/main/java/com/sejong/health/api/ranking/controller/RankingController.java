@@ -1,6 +1,7 @@
 package com.sejong.health.api.ranking.controller;
 
 import com.sejong.health.api.ranking.business.RankingBusiness;
+import com.sejong.health.common.Member;
 import com.sejong.health.common.annotation.LoginMember;
 import com.sejong.health.db.member.MemberEntity;
 import com.sejong.health.db.ranking.RankingEntity;
@@ -31,23 +32,16 @@ public class RankingController {
 
 
     @GetMapping("/get/score")
-    public String getScorePage(@LoginMember MemberEntity member, Model model) {
+    public String getScorePage(@LoginMember Member member, Model model) {
 
-        if (member == null) {
-            return "redirect:/open-api/login";
-        }
         model.addAttribute("member", member);
         return "/ranking/score";
     }
 
     @PostMapping("/get/score")
-    public String updateScore(@LoginMember MemberEntity member,HttpSession session,Model model) {
+    public String updateScore(@LoginMember Member member,HttpSession session,Model model) {
 
-        if (member == null) {
-            return "redirect:/open-api/login";
-
-        }
-        MemberEntity updateMember = rankingBusiness.getRankingScore(member);
+        MemberEntity updateMember = rankingBusiness.getRankingScore(member.getId());
         session.removeAttribute("sessionId");
         session.setAttribute("sessionId", updateMember.getId());
         return "redirect:/api/ranking/get/score";

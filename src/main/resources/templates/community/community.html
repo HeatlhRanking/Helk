@@ -34,7 +34,7 @@
 <header>
     <h1>Question Board</h1>
     <!-- Write button -->
-    <button onclick="location.href='/write'">Write</button>
+    <button onclick="location.href='/api/question/make/question'">Write</button>
 </header>
 
 <main>
@@ -42,7 +42,7 @@
     <ul>
         <!-- Loop through the questions and display them -->
         <li th:each="question : ${questionsPage.content}">
-            <a th:href="@{'/api/question/showOne/' + ${question.id}}" th:text="${question.context}"></a>
+            <a th:href="@{'/api/question/showOne/' + ${question.id}}" th:text="${question.title}"></a>
             <p>Likes: <span th:text="${question.likes}"></span></p>
         </li>
     </ul>

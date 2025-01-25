@@ -20,8 +20,8 @@ public class RankingBusiness {
         return rankingService.allRanking();
     }
 
-    public MemberEntity getRankingScore(MemberEntity memberEntity){
-        return rankingService.getScore(memberEntity.getId());
+    public MemberEntity getRankingScore(Long memberId){
+        return rankingService.getScore(memberId);
 
     }
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Make a Question</title>
+</head>
+<body>
+<header>
+    <h1>질문 작성</h1>
+</header>
+
+<main>
+    <!-- Form for creating a question -->
+    <form th:action="@{/api/question/make/question}" th:method="post" th:object="${questionFormRequest}">
+        <!-- Title input -->
+        <div>
+            <label for="title">제목:</label>
+            <!--/*@thymesVar id="questionFormRequest" type=""*/-->
+            <input type="text" id="title" name="title" required>
+
+        </div>
+
+        <!-- Context input -->
+        <div>
+            <label for="context">내용:</label>
+            <textarea id="context" name="context"  rows="5" required></textarea>
+        </div>
+
+        <!-- Submit button -->
+        <div>
+            <button type="submit">질문 등록</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>
