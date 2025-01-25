@@ -22,3 +22,25 @@ CREATE TABLE ranking (
                          modified_date_time DATETIME NOT NULL,
                          FOREIGN KEY (member_id) REFERENCES member(id)
 );
+
+CREATE TABLE question (
+                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                          context VARCHAR(255),
+                          member_id BIGINT,
+                          likes INT,
+                          created_date_time DATETIME NOT NULL,
+                          modified_date_time DATETIME NOT NULL,
+                          FOREIGN KEY (member_id) REFERENCES member(id)
+);
+
+CREATE TABLE answer (
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        likes INT DEFAULT 0,
+                        context VARCHAR(500) NOT NULL,
+                        question_id BIGINT,
+                        member_id BIGINT,
+                        created_date_time DATETIME NOT NULL,
+                        modified_date_time DATETIME NOT NULL,
+                        FOREIGN KEY (question_id) REFERENCES question(id),
+                        FOREIGN KEY (member_id) REFERENCES member(id)
+);

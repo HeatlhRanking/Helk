@@ -19,6 +19,8 @@ public class ConstructorTest {
     @BeforeEach
     void Init(){
         sqlConstructor.makeDbData(20);
+        sqlConstructor.makeMemberAndQuestion(20);
+        sqlConstructor.makeMemberAndQuestionAndAnswer(20);
     }
 
     @Test

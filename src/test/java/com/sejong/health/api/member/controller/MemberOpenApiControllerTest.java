@@ -3,6 +3,7 @@ package com.sejong.health.api.member.controller;
 import com.sejong.health.api.member.business.MemberBusiness;
 import com.sejong.health.api.member.dto.request.MemberLoginRequest;
 import com.sejong.health.api.member.dto.request.MemberSignUpRequest;
+import com.sejong.health.common.Member;
 import com.sejong.health.db.member.MemberEntity;
 import com.sejong.health.db.member.MemberRepository;
 import com.sejong.health.db.member.enums.MemberStatus;
@@ -44,7 +45,7 @@ class MemberOpenApiControllerTest {
 
     @Test
     void 로그인_하기() {
-        MemberEntity member = memberBusiness.login(new MemberLoginRequest("kkd06144@naver.com", "1234"));
+        Member member = memberBusiness.login(new MemberLoginRequest("kkd06144@naver.com", "1234"));
 
         assertThat(member.getId()).isEqualTo(1L);
         assertThat(member.getNickName()).isEqualTo("dongho");
