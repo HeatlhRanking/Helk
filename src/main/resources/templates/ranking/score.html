@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ranking Score</title>
+    <script>
+        function sendPostRequest() {
+            fetch('/api/ranking/get/score', {
+                method: 'POST'
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div>
+    <h1>Ranking Score</h1>
+    <p>Welcome, <span th:text="${member.nickName}">User</span>!</p>
+    <p>Your current score is: <span th:text="${member.ranking.rankingValue}">0</span>.</p>
+    <p>Your tier is <span th:text="${member.ranking.rankingStatus}">User</span>!</p>
+    <button onclick="sendPostRequest()">Update Score</button>
+</div>
+</body>
+</html>

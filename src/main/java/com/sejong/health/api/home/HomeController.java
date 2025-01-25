@@ -11,7 +11,7 @@ public class HomeController {
 
     @GetMapping("/index")
     public String index(HttpSession session, Model model) {
-        MemberEntity member = (MemberEntity)session.getAttribute("successMessage");
+        MemberEntity member = (MemberEntity)session.getAttribute("sessionId");
 
         if (member != null) {
             model.addAttribute("successMessage", member.getNickName() +" Success");
