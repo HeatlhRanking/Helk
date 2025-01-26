@@ -29,6 +29,7 @@ public class QuestionConverter {
                 .context(questionEntity.getContext())
                 .madePerson(questionEntity.getMember().getNickName())
                 .likes(questionEntity.getLikes())
+                .answers(questionEntity.getAnswers())
                 .build();
     }
 

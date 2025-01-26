@@ -6,8 +6,8 @@
 </head>
 <body>
 <header>
-    <p>Question Page Number:  <span th:text="${question.id}"></span></p>
-    <p>Question Title :   <span th:text="${question.title}"></span></p>
+    <p>Question Page Number: <span th:text="${question.id}"></span></p>
+    <p>Question Title: <span th:text="${question.title}"></span></p>
 </header>
 
 <main>
@@ -16,6 +16,25 @@
         <p><strong>좋아요 수:</strong> <span th:text="${question.likes}">0</span></p>
         <p><strong>내용:</strong></p>
         <p th:text="${question.context}">Question Content</p>
+    </section>
+
+    <section>
+        <h2>Answers</h2>
+        <ul>
+            <li th:each="answer : ${question.answers}">
+                <p><strong>작성자:</strong> <span th:text="${answer.getMember().nickName}">Answer Author</span></p>
+                <p><strong>좋아요 수:</strong> <span th:text="${answer.likes}">0</span></p>
+                <p><strong>내용:</strong></p>
+                <p th:text="${answer.getContext()}">Answer Content</p>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 답변 작성 버튼 추가 -->
+    <section>
+        <form th:action="@{/api/answer/make/answer/{questionId}(questionId=${question.id})}" method="get">
+            <button type="submit">답변 작성</button>
+        </form>
     </section>
 </main>
 

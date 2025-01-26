@@ -1,6 +1,7 @@
 package com.sejong.health.db.question;
 
 import com.sejong.health.db.answer.AnswerEntity;
+import com.sejong.health.db.like.LikeEntity;
 import com.sejong.health.db.member.MemberEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -43,6 +44,10 @@ public class QuestionEntity {
     @Column(columnDefinition = "int default 0")
     private Integer likes;
 
+    @OneToMany(mappedBy ="question")
+    private List<LikeEntity> likesList = new ArrayList<>();
+
+
 
     public void makeMember(MemberEntity member) {
         if (this.member == member) return;
@@ -59,6 +64,16 @@ public class QuestionEntity {
         if (answer != null && !answers.contains(answer)) {
             answers.add(answer);
             answer.makeQuestion(this);
+        }
+    }
+
+    public void makeLikes(LikeEntity like){
+        if(likesList==null){
+            likesList = new ArrayList<>();
+        }
+        if(like!=null&&!likesList.contains(like)){
+            likesList.add(like);
+            like.makeQuestion(this);
         }
     }
 

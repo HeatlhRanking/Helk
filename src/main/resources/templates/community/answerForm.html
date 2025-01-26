@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>답변 작성</title>
+</head>
+<body>
+<header>
+    <h1>답변 작성</h1>
+</header>
+
+<main>
+    <form th:action="@{/api/answer/make/answer/{questionId}(questionId=${questionId})}"
+          th:object="${answerFormRequest}"
+          method="post">
+
+        <!-- 답변 내용 입력 -->
+        <div>
+            <label for="context">내용</label><br>
+            <textarea id="context" name="context" rows="5" cols="50" required></textarea>
+        </div>
+
+        <!-- 확인 버튼 -->
+        <div>
+            <button type="submit">확인</button>
+        </div>
+    </form>
+</main>
+
+<footer>
+    <a href="/api/question/all">목록으로 돌아가기</a>
+</footer>
+</body>
+</html>

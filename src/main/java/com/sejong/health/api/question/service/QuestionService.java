@@ -41,4 +41,12 @@ public class QuestionService {
         questionRepository.save(question);
         return question.getId();
     }
+
+    @Transactional
+    public void updateButton(Long questionId){
+        QuestionEntity question = questionRepository.findById(questionId)
+                .orElseThrow(() -> new RuntimeException("updateButton error"));
+
+        question.setLikes(question.getLikes()+1);
+    }
 }
